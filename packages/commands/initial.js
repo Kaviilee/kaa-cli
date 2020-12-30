@@ -4,6 +4,8 @@ const path = require('path')
 const chalk = require('chalk')
 const figlet = require('figlet')
 
+const { isImg } = require('../libs/utils')
+
 const CURRENT_DIR = process.cwd()
 
 const QUESTIONS = [
@@ -24,8 +26,8 @@ const QUESTIONS = [
     type: 'list',
     message: 'Select your JavaScript framework',
     choices: [
-      'No JavaScript framework',
-      'Vue3.0'
+      'React',
+      'Vue with vite'
     ]
   }
 ]
@@ -33,7 +35,9 @@ const QUESTIONS = [
 let projectName = ''
 
 const createDirectoryContents = (templatePath, newProjectPath) => {
-  const filesToCreate = fs.readFileSync(templatePath)
+  const filesToCreate = fs.readdirSync(templatePath)
+
+  console.log(filesToCreate)
 
   filesToCreate.forEach(file => {
     const originFilePath = `${templatePath}/${file}`
@@ -42,7 +46,13 @@ const createDirectoryContents = (templatePath, newProjectPath) => {
     const stats = fs.statSync(originFilePath)
 
     if (stats.isFile()) {
-      const contents = fs.readFileSync(originFilePath, 'utf8')
+      let contents
+      // 判断文件格式是否为图片格式
+      if (isImg(file)) {
+        contents = fs.readFileSync(originFilePath)
+      } else {
+        contents = fs.readFileSync(originFilePath, 'utf8')
+      }
       // rename
       if (file === '.npmignore') {
         file = '.gitignore'
@@ -59,21 +69,19 @@ const createDirectoryContents = (templatePath, newProjectPath) => {
 }
 
 const complete = () => {
-  figlet('Kaa CLI', (err, data) => {
+  figlet('Kaa CLI', function(err, data) {
     if (err) {
-      console.log(chalk.red('Something about figlet has error!'))
+      console.log(chalk.red(' Something about figlet has error!'))
     }
 
     console.log(chalk.yellow(data))
     console.log(chalk.green(` [success] Project ${projectName} init finished.`))
     console.log()
     console.log(' Install dependencies')
-    console.log(chalk.magenta(` cd ${projectName} && npm install`))
+    console.log(chalk.magenta(` cd ${projectName} && yarn`))
     console.log()
     console.log(' Run the app')
-    console.log(chalk.magenta(' kaa start demo'))
-    console.log(' or:')
-    console.log(chalk.magenta(' pm2 start process.json'))
+    console.log(chalk.magenta(' yarn dev'))
   })
 }
 
@@ -81,12 +89,13 @@ const getTemplateDir = (templateType) => {
   let templateDir = ''
   switch(templateType) {
     case 'No JavaScript framework':
-      templateDir = 'templates_no_framework'
+      templateDir = 'template_react'
       break
-    case 'Vue3.0': templateDir = 'templates_vue_3/project'
+    case 'Vue with vite':
+      templateDir = 'vue3_with_vite'
       break
     default:
-      templateDir = 'templates_no_framework'
+      templateDir = 'template_react'
       break
   }
   return templateDir

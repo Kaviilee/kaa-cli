@@ -1,0 +1,1 @@
+The `components` directory contains your Vue.js components. Components are what makes up the different parts of your page and can be reused and imported into your pages, layouts and even other components.

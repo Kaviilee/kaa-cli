@@ -2,6 +2,8 @@ const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
 
+const { isImg } = require('../../libs/utils')
+
 // 获取命令携带的参数
 const Argv = process.argv[3] || ''
 
@@ -58,7 +60,13 @@ const createDirectoryContents = (templatePath, newDirPath) => {
     const stats = fs.statSync(originFilePath)
 
     if (stats.isFile()) {
-      const contents = fs.readFileSync(originFilePath, 'utf8')
+      let contents
+      // 如果是图片格式的，则不需要传进制参数
+      if (isImg(file)) {
+        contents = fs.readFileSync(originFilePath)
+      } else {
+        contents = fs.readFileSync(originFilePath, 'utf8')
+      }
       const writePath = `${newDirPath}/${file}`
 
       console.log(chalk.green(`Create new file: ${writePath}`))
