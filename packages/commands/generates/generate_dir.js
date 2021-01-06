@@ -19,7 +19,7 @@ const generate_dir = (type) => {
 
   console.log(CURRENT_DIR, Argv)
 
-  const dir = nameArr[0]
+  const dir = nameArr[0] === '$' ? '' : nameArr[0]
   const page = nameArr.length === 2 ? nameArr[1] : ''
   const moduleDir = CURRENT_DIR
   const targetPath = path.resolve(`${moduleDir}/${dir}`)

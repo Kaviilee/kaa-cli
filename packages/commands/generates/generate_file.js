@@ -15,7 +15,7 @@ const generate_file = (type) => {
 
   const nameArr = Argv.split('-')
   // 需要新建的文件夹名称
-  const dir = nameArr[0]
+  const dir = nameArr[0] === '$' ? '' : nameArr[0]
   // 文件名
   const fileName = nameArr.length === 2 ? nameArr[1] : 'index'
   // 模块的dir
@@ -47,6 +47,10 @@ const copyFile = ({ module, fileName, targetPath, type }) => {
     templatePath = path.join(__dirname, '../../../', `template_files/template.tsx`)
   }
   // 复制目标文件并重命名为 fileName
+  // 可以使用流来进行复制
+  /* const rs = fs.createReadStream(templatePath);
+  const ws = fs.createWriteStream(`${targetPath}/${fileName}`);
+  rs.pipe(ws) */
   fs.copyFile(templatePath, `${targetPath}/${fileName}`, (err) => {
     if (err) {
       console.log(chalk.red(err))
