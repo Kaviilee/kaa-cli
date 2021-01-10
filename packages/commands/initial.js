@@ -27,7 +27,7 @@ const QUESTIONS = [
     message: 'Select your JavaScript framework',
     choices: [
       'React',
-      'Vue with vite'
+      'Vue'
     ]
   }
 ]
@@ -91,8 +91,8 @@ const getTemplateDir = (templateType) => {
     case 'No JavaScript framework':
       templateDir = 'template_react'
       break
-    case 'Vue with vite':
-      templateDir = 'vue3_with_vite'
+    case 'Vue':
+      templateDir = 'template_vue'
       break
     default:
       templateDir = 'template_react'
