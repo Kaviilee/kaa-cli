@@ -44,6 +44,12 @@ Commands:
   help [command]                          display help for command
  ```
 
+注意：当使用 `new` 命令时 `[module]` 如果传入 **`$`**，则表示在当前目录生成。
+
+```bash
+kaa new $
+```
+
  ## 新建一个模块
  
  ```bash
