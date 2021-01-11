@@ -46,7 +46,7 @@ const copyModule = (options) => {
     fs.mkdirSync(targetPath, { recursive: true })
   }
 
-  const templatePath = path.join(__dirname, '../../../', `template_dirs/${options.type}`)
+  const templatePath = path.join(__dirname, '../../../', `template-dirs/${options.type}`)
   createDirectoryContents(templatePath, targetPath)
 }
 

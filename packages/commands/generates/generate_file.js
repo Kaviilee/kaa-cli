@@ -42,9 +42,9 @@ const copyFile = ({ module, fileName, targetPath, type }) => {
   let templatePath = ''
 
   if (type === 'vf') {
-    templatePath = path.join(__dirname, '../../../', `template_files/template.vue`)
+    templatePath = path.join(__dirname, '../../../', `template-files/template.vue`)
   } else if (type === 'rf') {
-    templatePath = path.join(__dirname, '../../../', `template_files/template.tsx`)
+    templatePath = path.join(__dirname, '../../../', `template-files/template.tsx`)
   }
   // 复制目标文件并重命名为 fileName
   // 可以使用流来进行复制

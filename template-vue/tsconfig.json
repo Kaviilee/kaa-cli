@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
-    "module": "commonjs",
+    "module": "esNext",
     "moduleResolution": "node",
     "target": "esNext",
     "jsx": "preserve",
@@ -13,7 +13,10 @@
       "@utils/*": ["./src/utils/*"]
     },
     "noUnusedParameters": false,
-    "types": ["@types/node"]
+    "types": ["@types/node", "vite/client"],
+    "sourceMap": true,
+    "lib": ["esnext", "dom"],
+    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
   "include": [
     "src/**/*.ts",

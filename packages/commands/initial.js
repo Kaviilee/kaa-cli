@@ -89,13 +89,13 @@ const getTemplateDir = (templateType) => {
   let templateDir = ''
   switch(templateType) {
     case 'No JavaScript framework':
-      templateDir = 'template_react'
+      templateDir = 'template-react'
       break
     case 'Vue':
-      templateDir = 'template_vue'
+      templateDir = 'template-vue'
       break
     default:
-      templateDir = 'template_react'
+      templateDir = 'template-react'
       break
   }
   return templateDir
