@@ -1,9 +1,12 @@
 {
   "name": "my-react-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "lint:prettier": "prettier --check \"src/**/*\" --end-of-line auto",
+    "prettier": "prettier -c --write \"src/**/*\"",
+    "commit": "git-cz"
   },
   "dependencies": {
     "react": "^17.0.0",
@@ -12,14 +15,46 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/node": "^14.14.20",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
     "@vitejs/plugin-react-refresh": "^1.1.0",
+    "conventional-changelog": "^3.1.24",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-formatter-pretty": "^4.0.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-compat": "^3.9.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-markdown": "^1.0.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^25.0.1",
+    "husky": "^4.3.7",
     "less": "^4.1.0",
+    "prettier": "^2.2.1",
     "typescript": "^4.1.2",
     "vite": "^2.0.0-beta.12"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

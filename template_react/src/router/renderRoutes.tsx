@@ -6,11 +6,11 @@ import { RouteConfig } from './index.d';
 export function renderRoutes(
   routes: RouteConfig[] | undefined = [],
   extraProps?: any,
-  switchProps?: SwitchProps
+  switchProps?: SwitchProps,
 ): JSX.Element {
   return routes ? (
     <Switch {...switchProps}>
-      { routes.map((route, idx) => (
+      {routes.map((route, idx) => (
         <Route
           key={route.key || idx}
           path={route.path}
@@ -23,12 +23,7 @@ export function renderRoutes(
 
             if (route.component) {
               return (
-                <route.component
-                  {...props}
-                  {...extraProps}
-                  meta={route.meta || {}}
-                  route={route}
-                >
+                <route.component {...props} {...extraProps} meta={route.meta || {}} route={route}>
                   {route.routes?.length ? renderRoutes(route.routes) : null}
                 </route.component>
               );

@@ -1,4 +1,4 @@
-import Home from '@/pages/Home'
+import Home from '@/pages/Home';
 
 import type { RouteConfig } from './index.d';
 
@@ -9,5 +9,5 @@ export const routes: RouteConfig[] = [
   {
     path: '/',
     component: Home,
-  }
-]
+  },
+];
