@@ -7,17 +7,30 @@ const Argv = process.argv[3] || ''
 
 const CURRENT_DIR = process.cwd()
 
+const formatFileName = (str, type) => {
+  if (str.includes('.tsx') || str.includes('.vue')) {
+    return str
+  }
+  return type === 'rf' ? `${str}.tsx` : `${str}.vue`
+}
+
+const formatDir = (dirs) => {
+  return dirs.join('/')
+}
+
 const generate_file = (type) => {
   if (Argv === '') {
     console.log(chalk.yellow('[warning]: Your command should like "kaa new [module]/[module]-[page] [dirType]"'));
     return;
   }
 
-  const nameArr = Argv.split('-')
+  const nameArr = Argv.split('/')
+  const length = nameArr.length
+  console.log(nameArr)
   // 需要新建的文件夹名称
-  const dir = nameArr[0] === '$' ? '' : nameArr[0]
+  const dir = length === 1 ? '' : formatDir(nameArr.slice(0, length-1))
   // 文件名
-  const fileName = nameArr.length === 2 ? nameArr[1] : 'index'
+  const fileName = formatFileName(nameArr[length-1], type)
   // 模块的dir
   const moduleDir = CURRENT_DIR
   // 目标路径
